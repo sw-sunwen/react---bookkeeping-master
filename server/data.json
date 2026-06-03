@@ -1,0 +1,158 @@
+{
+  "transactions": [
+    {
+      "type": "pay",
+      "money": -99,
+      "date": "2026-12-07 10:36:24",
+      "useFor": "drinks",
+      "id": "1"
+    },
+    {
+      "type": "pay",
+      "money": -45.8,
+      "date": "2026-12-19 08:12:10",
+      "useFor": "breakfast",
+      "id": "2"
+    },
+    {
+      "type": "pay",
+      "money": -128.5,
+      "date": "2026-12-26 12:25:36",
+      "useFor": "lunch",
+      "id": "3"
+    },
+    {
+      "type": "pay",
+      "money": -2.5,
+      "date": "2026-12-02 07:40:18",
+      "useFor": "subway",
+      "id": "4"
+    },
+    {
+      "type": "income",
+      "money": 200,
+      "date": "2026-12-15 11:20:33",
+      "useFor": "red packet",
+      "id": "19"
+    },
+    {
+      "type": "pay",
+      "money": -199,
+      "date": "2026-11-09 19:05:42",
+      "useFor": "movie",
+      "id": "5"
+    },
+    {
+      "type": "pay",
+      "money": -899,
+      "date": "2026-11-21 15:10:20",
+      "useFor": "clothes",
+      "id": "6"
+    },
+    {
+      "type": "pay",
+      "money": -59.9,
+      "date": "2026-11-15 20:18:08",
+      "useFor": "snacks",
+      "id": "8"
+    },
+    {
+      "type": "pay",
+      "money": -35,
+      "date": "2026-11-03 14:22:33",
+      "useFor": "fruit",
+      "id": "9"
+    },
+    {
+      "type": "pay",
+      "money": -15,
+      "date": "2026-11-28 11:08:55",
+      "useFor": "water bill",
+      "id": "10"
+    },
+    {
+      "type": "income",
+      "money": 500,
+      "date": "2026-11-12 14:15:08",
+      "useFor": "bonus",
+      "id": "20"
+    },
+    {
+      "type": "income",
+      "money": 8500,
+      "date": "2026-10-05 09:00:00",
+      "useFor": "salary",
+      "id": "11"
+    },
+    {
+      "type": "pay",
+      "money": -88,
+      "date": "2026-10-17 16:45:12",
+      "useFor": "electricity bill",
+      "id": "12"
+    },
+    {
+      "type": "pay",
+      "money": -68,
+      "date": "2026-10-23 09:15:40",
+      "useFor": "bus",
+      "id": "13"
+    },
+    {
+      "type": "pay",
+      "money": -188,
+      "date": "2026-10-30 18:30:25",
+      "useFor": "dinner",
+      "id": "14"
+    },
+    {
+      "type": "income",
+      "money": 300,
+      "date": "2026-10-12 16:30:00",
+      "useFor": "part-time",
+      "id": "15"
+    },
+    {
+      "type": "pay",
+      "money": -2500,
+      "date": "2026-09-01 09:30:15",
+      "useFor": "rent",
+      "id": "7"
+    },
+    {
+      "type": "pay",
+      "money": -49.9,
+      "date": "2026-09-10 10:02:19",
+      "useFor": "coffee",
+      "id": "16"
+    },
+    {
+      "type": "pay",
+      "money": -300,
+      "date": "2026-09-22 17:28:06",
+      "useFor": "fitness",
+      "id": "17"
+    },
+    {
+      "type": "income",
+      "money": 156.89,
+      "date": "2026-09-16 15:40:18",
+      "useFor": "finance income",
+      "id": "18"
+    },
+    {
+      "id": "1767267578845",
+      "type": "income",
+      "money": 5,
+      "date": "2026-01-01 19:38:58",
+      "useFor": "income"
+    },
+    {
+      "id": 1780468499948,
+      "type": "pay",
+      "money": -1,
+      "date": "2026-06-03 14:34:53",
+      "useFor": "1"
+    }
+  ]
+}

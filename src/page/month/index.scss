@@ -1,0 +1,140 @@
+// 外层最容器 铺满全屏 + 基础样式重置
+.monthlyBill {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f5f5f9;
+  box-sizing: border-box;
+  overflow-x: hidden;
+
+  // 顶部导航栏样式 - 匹配NavBar组件
+  .nav {
+    background-color: #ffffff;
+    font-weight: 600;
+    font-size: 16px;
+    color: #333333;
+    // 清除antd-mobile默认的上下内边距，自定义适配
+    padding: 12px 0;
+    border-bottom: 1px solid #eeeeee;
+  }
+
+  // 中间内容区 - 主体容器
+  .content {
+    padding: 15px 12px;
+
+    // 头部区域：日期栏 + 收支统计 + 日期选择器
+    .header {
+      background-color: #ffffff;
+      border-radius: 12px;
+      padding: 18px 15px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+      // 账单日期行：文字 + 展开箭头
+      .date {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        cursor: pointer;
+        margin-bottom: 20px;
+
+        .text {
+          font-size: 15px;
+          color: #333333;
+          font-weight: 500;
+        }
+
+        // 展开箭头样式（无需引入图标，纯css实现）
+        .arrow {
+          display: inline-block;
+          width: 8px;
+          height: 8px;
+          border-top: 2px solid #999999;
+          border-right: 2px solid #999999;
+          transition: transform 0.2s ease;
+        }
+
+        // 展开箭头的旋转样式
+        .expand {
+          transform: rotate(135deg);
+        }
+
+        // 可扩展：收起状态的箭头
+        .fold {
+          transform: rotate(-45deg);
+        }
+      }
+
+      // 收支结余三栏统计样式
+      .twoLineOverview {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 12px;
+
+        .item {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          flex: 1;
+
+          // 金额样式
+          .money {
+            font-size: 17px;
+            font-weight: 600;
+            line-height: 1.4;
+            margin-bottom: 4px;
+
+            // 区分收支颜色：支出红、收入绿、结余深灰
+            &:nth-child(1) {
+              color: #e53935;
+            }
+
+            &:nth-child(2) {
+              color: #43a047;
+            }
+
+            &:nth-child(3) {
+              color: #333333;
+            }
+          }
+
+          // 类型文字样式
+          .type {
+            font-size: 12px;
+            color: #999999;
+          }
+        }
+      }
+
+      // antd-mobile DatePicker 日期选择器样式适配
+      .kaDate {
+        width: 100%;
+
+        // 清除组件默认边框和内边距，统一风格
+        :global {
+          .adm-date-picker {
+            --border-radius: 8px;
+          }
+
+          .adm-date-picker-header {
+            font-size: 14px;
+            color: #333;
+          }
+        }
+      }
+    }
+  }
+}
+
+// 通用样式重置 & 移动端适配
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+html,
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", sans-serif;
+  background-color: #f5f5f9;
+}

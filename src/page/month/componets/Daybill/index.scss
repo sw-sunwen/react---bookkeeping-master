@@ -1,0 +1,116 @@
+.dailybill {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 12px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+
+  .header {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .dataIcon {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .date {
+        font-size: 16px;
+        font-weight: 500;
+        color: #333;
+      }
+
+      .arrow {
+        width: 8px;
+        height: 8px;
+        border-right: 2px solid #999;
+        border-bottom: 2px solid #999;
+        transform: rotate(45deg);
+        transition: transform 0.3s;
+      }
+
+      .rotate {
+        transform: rotate(-135deg);
+      }
+    }
+
+    .onelineoverview {
+      display: flex;
+      justify-content: space-around;
+      padding: 12px 0;
+
+      .pay,
+      .income,
+      .total {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .money {
+          font-size: 20px;
+          font-weight: bold;
+          margin-bottom: 4px;
+
+          .pay & {
+            color: #ff4d4f;
+          }
+
+          .income & {
+            color: #52c41a;
+          }
+
+          .total & {
+            color: #a062d4;
+          }
+        }
+
+        .type {
+          font-size: 12px;
+          color: #999;
+        }
+      }
+    }
+  }
+
+  .daylist {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #f0f0f0;
+
+    .bill {
+      display: flex;
+      align-items: center;
+      padding: 12px 0;
+
+      .detail {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .billType {
+          font-size: 14px;
+          color: #333;
+          flex: 1;
+        }
+
+        .money {
+          font-size: 16px;
+          font-weight: 500;
+
+          &.pay {
+            color: #ff4d4f;
+          }
+
+          &.income {
+            color: #52c41a;
+          }
+        }
+      }
+    }
+  }
+}
