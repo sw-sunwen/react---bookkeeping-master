@@ -10,7 +10,8 @@ import {
   BillOutline,
   CalculatorOutline,
   AddCircleOutline
-} from 'antd-mobile-icons'
+} from 'antd-mobile-icons' // 官方提供的图标库，专门为移动端React应用设计。
+
 
 const tabs = [
   {
@@ -30,12 +31,15 @@ const tabs = [
   }
 ]
 const Layout = () => {
+
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(getbilllist())
   }, [dispatch])
+
   const navigate = useNavigate()
   const location = useLocation()
+  
   const switchRoute = (path) => {
     console.log(path)
     navigate(path)

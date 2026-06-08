@@ -7,6 +7,8 @@ import './theme.css';
 import store from './store';
 import { Provider } from 'react-redux';
 import axios from 'axios';
+
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>

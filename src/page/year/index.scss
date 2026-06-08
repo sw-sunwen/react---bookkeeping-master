@@ -1,0 +1,62 @@
+.billDetail{
+    --ka-text-color: #888c98;
+    --ka-bg-color: #daf2e1;
+    --ka-color: #69ae78;
+    --ka-border-color: #191d26;
+  
+    height: 100%;
+    background: linear-gradient(180deg,var(--ka-color),var(--ka-bg-color) 100%);
+    // background-size: 100% 240px;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    // background-color: var(--ka-bg-color);
+    color: var(--ka-text-color);
+    
+    .nav{
+        --adm-font-size-10: 16px;
+        color: #0c4bdf;
+        background-color: transparent;
+        .adm-nav-bar-back-arrow{
+            font-size: 20px;
+        }
+        .arrow {
+            display: inline-block;
+            width: 7px;
+            height: 7px;
+            margin-top: -3px;
+            margin-left: 9px;
+            border-top: 2px solid #121826;
+            border-left: 2px solid #121826;
+            transform: rotate(225deg);  
+            transform-origin: center;
+            transition: all 0.3s;
+          }
+          .arrow.expand {
+            transform: translate(0, 2px) rotate(45deg);
+          }
+    }
+
+    .content{
+      
+      overflow-y: scroll;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      &::-webkit-scrollbar{
+          display: none;
+      }
+      height: 573px;
+      .overview{
+        height: 50px;
+      }
+      .monthBillWrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        overflow-y: scroll; /* 单独给 .monthBillWrapper 滚动条 */
+        flex-grow: 1; /* 剩余空间分配给 .monthBillWrapper */
+        width: 100%;
+      }
+    
+    }
+}

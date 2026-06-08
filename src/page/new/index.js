@@ -1,122 +1,135 @@
-import { NavBar, Input, Radio, DatePicker, Button, Toast } from 'antd-mobile'
-import { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
-import { addBill } from '../../store/modules/bill-store'
+import { Button, DatePicker, Input, NavBar } from 'antd-mobile'
+import Icon from '@/components/locn/index'
 import './index.scss'
+import classNames from 'classnames'
+import { billListData } from '@/contants'
+import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
+import { addBillList } from '@/store/modules/bill-store'
+import { useDispatch } from 'react-redux'
 import dayjs from 'dayjs'
 
 const New = () => {
-  const [money, setMoney] = useState('')
-  const [type, setType] = useState('pay')
-  const [useFor, setUseFor] = useState('')
-  const [date, setDate] = useState(new Date())
-
-  const dispatch = useDispatch()
+  
   const navigate = useNavigate()
+//   设置一个记录状态
+  const [type, setType] = useState('pay')
+  const [money, setMoney] = useState(0)
+  const [useFor,setUseFor] = useState('')
+  const dispatch = useDispatch()
+  const [date,setDate] = useState(new Date())
 
-  const handleSubmit = async () => {
-    if (!money || !useFor) {
-      Toast.show({
-        content: '请填写完整信息',
-        icon: 'fail',
-      })
-      return
+  const saveBill = () => {
+    // 1. 收集表单数据
+    const data = {
+        type:type,
+        money:type==='pay'?-money:+money,
+        date:date,
+        useFor:useFor
     }
-
-    const moneyValue = parseFloat(money)
-    if (moneyValue <= 0) {
-      Toast.show({
-        content: '金额必须大于0',
-        icon: 'fail',
-      })
-      return
+    // 2.判断数据是否为空
+    if(!money || !useFor){
+        return alert('数据不能为空')
     }
-
-    const billData = {
-      type: type,
-      money: type === 'pay' ? -Math.abs(moneyValue) : Math.abs(moneyValue),
-      date: dayjs(date).format('YYYY-MM-DD HH:mm:ss'),
-      useFor: useFor,
-      id: Date.now()
-    }
-
-    try {
-      await dispatch(addBill(billData))
-      Toast.show({
-        content: '保存成功',
-        icon: 'success',
-      })
-      navigate('/month')
-    } catch (error) {
-      Toast.show({
-        content: '保存失败',
-        icon: 'fail',
-      })
-    }
+    // 3. 保存账单
+    dispatch(addBillList(data))
+    // 提示保存成功并返回
+    alert('保存成功')
+    navigate(-1)
   }
 
+  const [dateVisible,setDateVisible] = useState(false)
+  const dateConfirm = (value) => {
+    setDateVisible(false)
+    setDate(value)
+  }
   return (
-    <div className="new">
+    <div className="keepAccounts">
       <NavBar className="nav" onBack={() => navigate(-1)}>
         记一笔
       </NavBar>
-      <div className="content">
-        <div className="money-section">
-          <div className="label">金额</div>
-          <div className="money-input">
-            <span className="symbol">¥</span>
-            <Input
-              className="input"
-              placeholder="0.00"
-              value={money}
-              onChange={setMoney}
-              type="number"
-            />
-          </div>
-        </div>
 
-        <div className="type-section">
-          <div className="label">类型</div>
-          <Radio.Group value={type} onChange={setType}>
-            <Radio value="pay">支出</Radio>
-            <Radio value="income">收入</Radio>
-          </Radio.Group>
-        </div>
-
-        <div className="usefor-section">
-          <div className="label">用途</div>
-          <Input
-            className="input"
-            placeholder="请输入用途"
-            value={useFor}
-            onChange={setUseFor}
-          />
-        </div>
-
-        <div className="date-section">
-          <div className="label">日期</div>
-          <DatePicker
-            value={date}
-            onConfirm={setDate}
-            max={new Date()}
+      <div className="header">
+        <div className="kaType">
+          <Button
+            shape="rounded"
+            className={classNames(type==='pay'?'selected' : '')}
+            onClick={()=>setType('pay')}
           >
-            {value => (
-              <div className="date-picker">
-                {dayjs(value).format('YYYY-MM-DD')}
-              </div>
-            )}
-          </DatePicker>
-        </div>
-
-        <div className="button-section">
-          <Button color="primary" block onClick={handleSubmit}>
-            保存
+            支出
+          </Button>
+          <Button
+            className={classNames(type === 'income'?'selected' : '')}
+            shape="rounded"
+            onClick={()=>setType('income')}
+          >
+            收入
           </Button>
         </div>
+
+        <div className="kaFormWrapper">
+          <div className="kaForm">
+            <div className="date">
+              <Icon type="calendar" className="icon" />
+              <span className="text" onClick={() => setDateVisible(true)}>{dayjs(date).format('YYYY-MM-DD')}</span>
+              <DatePicker
+                className="kaDate"
+                title="记账日期"
+                max={new Date()}
+                visible={dateVisible}
+                onConfirm={dateConfirm}
+              />
+            </div>
+            <div className="kaInput">
+              <Input
+                className="input"
+                placeholder="0.00"
+                type="number"
+                value={money}
+                onChange={setMoney}
+              />
+              <span className="iconYuan">¥</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="kaTypeList">
+        {billListData[type].map(item => {
+          return (
+            <div className="kaType" key={item.type}>
+              <div className="title">{item.name}</div>
+              <div className="list">
+                {item.list.map(item => {
+                  return (
+                    <div
+                      className={classNames(
+                        'item',
+                        useFor === item.type && 'selected'
+                      )}
+                      key={item.type}
+                      onClick={()=>setUseFor(item.type)}
+                    >
+                      <div className="icon">
+                        <Icon type={item.type} />
+                      </div>
+                      <div className="text">{item.name}</div>
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+          )
+        })}
+      </div>
+
+      <div className="btns">
+        <Button className="btn save" onClick = {saveBill}>
+          保 存
+        </Button>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default New;
+export default New

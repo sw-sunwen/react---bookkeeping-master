@@ -2,11 +2,12 @@ import './index.scss'
 import classNames from 'classnames'
 import dayjs from 'dayjs'
 import { useState } from 'react'
-import Icon from '../../../../components/index'
+import Icon from '@/components/locn/index'
 
 const Daybill = ({ date, daylist }) => {
-  //由箭头控制是否可�?
+  //由箭头控制是否可?
   const [visible, setVisible] = useState(false)
+
   return (
     <div className={classNames('dailybill')}>
       <div className='header'>

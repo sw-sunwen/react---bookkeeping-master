@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+
 const billSlice = createSlice({
   name: 'bill',
   initialState: {
@@ -10,7 +11,7 @@ const billSlice = createSlice({
       console.log('setBill called with payload:', action.payload);
       state.billlist = action.payload;
     },
-    addBillToState(state, action) {
+    addBillList(state, action) {
       state.billlist.unshift(action.payload);
     }
   }
@@ -32,7 +33,7 @@ const addBill = (billData) => {
   return async (dispatch) => {
     try {
       const response = await axios.post('http://localhost:3001/transactions', billData);
-      dispatch(addBillToState(response.data));
+      dispatch(addBillList(response.data));
       return response.data;
     } catch (error) {
       console.error('Add Bill Error:', error);
@@ -41,5 +42,5 @@ const addBill = (billData) => {
   }
 }
 export { getbilllist, addBill };
-export const { setBill, addBillToState } = billSlice.actions;
+export const { setBill, addBillList } = billSlice.actions;
 export default billSlice.reducer;
