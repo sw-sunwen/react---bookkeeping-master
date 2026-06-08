@@ -74,7 +74,7 @@ const Month = () => {
         <div className='header' >
           <div className='date' onClick={() => setDatavisible(true)}>
             <span className='text'>
-              {date}月账?
+              {date}月账单
             </span>
             <span className={classNames('arrow', 'expand', datavisible && 'fold')}></span>
           </div>

@@ -10,20 +10,19 @@ import { useDispatch } from 'react-redux'
 import dayjs from 'dayjs'
 
 const New = () => {
-  
+  const dispatch = useDispatch()
   const navigate = useNavigate()
 //   设置一个记录状态
-  const [type, setType] = useState('pay')
-  const [money, setMoney] = useState(0)
-  const [useFor,setUseFor] = useState('')
-  const dispatch = useDispatch()
-  const [date,setDate] = useState(new Date())
+  const [type, setType] = useState('pay') // 记录收支
+  const [money, setMoney] = useState(0) // 记录金额
+  const [useFor,setUseFor] = useState('') // 记账用途
+  const [date,setDate] = useState(new Date()) // 记账日期
 
   const saveBill = () => {
     // 1. 收集表单数据
     const data = {
         type:type,
-        money:type==='pay'?-money:+money,
+        money:type==='pay'? -money : +money,
         date:date,
         useFor:useFor
     }
@@ -43,6 +42,7 @@ const New = () => {
     setDateVisible(false)
     setDate(value)
   }
+
   return (
     <div className="keepAccounts">
       <NavBar className="nav" onBack={() => navigate(-1)}>
@@ -78,6 +78,8 @@ const New = () => {
                 max={new Date()}
                 visible={dateVisible}
                 onConfirm={dateConfirm}
+                onClose={() => setDateVisible(false)}
+                onCancel={() => setDateVisible(false)}
               />
             </div>
             <div className="kaInput">
@@ -95,6 +97,7 @@ const New = () => {
       </div>
 
       <div className="kaTypeList">
+        {/* 数据区域 */}
         {billListData[type].map(item => {
           return (
             <div className="kaType" key={item.type}>

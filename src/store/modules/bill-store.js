@@ -11,7 +11,7 @@ const billSlice = createSlice({
       console.log('setBill called with payload:', action.payload);
       state.billlist = action.payload;
     },
-    addBillList(state, action) {
+    addBill(state, action) {
       state.billlist.unshift(action.payload);
     }
   }
@@ -29,11 +29,11 @@ const getbilllist = () => {
   }
 }
 
-const addBill = (billData) => {
+const addBillList = (billData) => {
   return async (dispatch) => {
     try {
       const response = await axios.post('http://localhost:3001/transactions', billData);
-      dispatch(addBillList(response.data));
+      dispatch(addBill(response.data));
       return response.data;
     } catch (error) {
       console.error('Add Bill Error:', error);
@@ -41,6 +41,6 @@ const addBill = (billData) => {
     }
   }
 }
-export { getbilllist, addBill };
-export const { setBill, addBillList } = billSlice.actions;
+export { getbilllist, addBillList };
+export const { setBill, addBill } = billSlice.actions;
 export default billSlice.reducer;
