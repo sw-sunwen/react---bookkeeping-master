@@ -6,7 +6,6 @@ import { RouterProvider } from 'react-router-dom';
 import './theme.css';
 import store from './store';
 import { Provider } from 'react-redux';
-import axios from 'axios';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
